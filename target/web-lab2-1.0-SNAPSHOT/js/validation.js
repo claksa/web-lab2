@@ -36,7 +36,6 @@ $(document).ready(function () {
 
     function validateX() {
         if ($('input[name="x_value"]').not(':checked')) {
-            alert("where x");
             isValid = false;
         }
     }
@@ -132,8 +131,8 @@ $(document).ready(function () {
         let minDiff = Infinity;
         let nearestXValue;
         for (let i = 0; i < X_VALUES.length; i++) {
-            if (Math.abs(y - X_VALUES[i]) < minDiff) {
-                minDiff = Math.abs(y - X_VALUES[i]);
+            if (Math.abs(x - X_VALUES[i]) < minDiff) {
+                minDiff = Math.abs(x - X_VALUES[i]);
                 nearestXValue = X_VALUES[i];
             }
         }
@@ -162,6 +161,7 @@ $(document).ready(function () {
     $("#form").on("submit", function (event) {
         event.preventDefault();
         console.log("submitted");
+        console.log("serialized data: " + $(this).serialize());
 
         if (!isValid) {
             return;
@@ -170,7 +170,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "script.php",
+            url: "/weblib/servlets",
             data: $(this).serialize() + "&timezone=" + new Date().getTimezoneOffset(),
             beforeSend: function () {
                 $(".send_form").attr("disabled", "disabled");
@@ -219,10 +219,9 @@ $(document).ready(function () {
         redrawFromInput(x, y, radius);
     })
 
-    $('.set_X').on('click', function () {
+    $('.set_X').on('check', function () {
         let y = $('#y_val').val();
         redrawFromInput(x, y, radius);
     })
-
 
 });

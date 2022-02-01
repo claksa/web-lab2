@@ -35,7 +35,7 @@
                 Введите значения:
             </th>
         </tr>
-        <form id="form" novalidate action="" method="POST">
+        <form action="weblib/servlets" id="form" method="POST" novalidate>
             <tr>
                 <td>X:</td>
                 <td class="coordinate">
@@ -64,6 +64,7 @@
                 <td class="y_coordinate">
                     <label for="y_val"></label>
                     <input id="y_val" name="y_value" type="number" step="1" placeholder="-3..3" min="-3" max="3">
+                    <span class="error" aria-live="polite"></span>
                 </td>
             </tr>
             <tr>
@@ -91,7 +92,6 @@
             </tr>
             <tr>
                 <td class="message">
-                    <span class="error" aria-live="polite"></span>
                 </td>
             </tr>
         </form>
