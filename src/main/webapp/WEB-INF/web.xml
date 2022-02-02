@@ -9,6 +9,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/web-lab2-1.-SNAPSHOT</url-pattern>
+        <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 </web-app>

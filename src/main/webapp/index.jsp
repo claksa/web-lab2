@@ -35,7 +35,7 @@
                 Введите значения:
             </th>
         </tr>
-        <form action="/web-lab2-1.-SNAPSHOT" id="form" method="POST" novalidate>
+        <form action="controller" id="form" method="POST" novalidate>
             <tr>
                 <td>X:</td>
                 <td class="coordinate">

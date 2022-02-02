@@ -170,7 +170,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "/web-lab2-1.0-SNAPSHOT",
+            url: "controller",
             data: $(this).serialize() + "&timezone=" + new Date().getTimezoneOffset(),
             beforeSend: function () {
                 $(".send_form").attr("disabled", "disabled");

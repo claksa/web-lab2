@@ -35,7 +35,7 @@
                 Введите значения:
             </th>
         </tr>
-        <form action="weblib/servlets" id="form" method="POST" novalidate>
+        <form action="controller" id="form" method="POST" novalidate>
             <tr>
                 <td>X:</td>
                 <td class="coordinate">
