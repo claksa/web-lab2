@@ -164,7 +164,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "controller",
-            data: $(this).serialize() + "&radius=" + radius + "&timezone=" + new Date().getTimezoneOffset(),
+            data: $(this).serialize() + "&radius=" + radius,
             beforeSend: function () {
                 $(".send_form").attr("disabled", "disabled");
             },

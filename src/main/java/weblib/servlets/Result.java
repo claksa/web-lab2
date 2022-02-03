@@ -1,5 +1,7 @@
 package weblib.servlets;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Result {
@@ -18,7 +20,7 @@ public class Result {
         this.y = y;
         this.r = r;
         this.status = generateStatus(x, y, r);
-        this.currentTime = new Date().toString();
+        this.currentTime = generateTime();
         this.workTime = workTime;
     }
 
@@ -28,6 +30,12 @@ public class Result {
             status = checkQuarters(x, y, r) ? "входит в ОДЗ" : "не входит в ОДЗ";
         }
         return status;
+    }
+
+    public String generateTime() {
+        String timePattern = "HH:mm:ss";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePattern);
+        return LocalDateTime.now().format(formatter);
     }
 
 
@@ -50,16 +58,13 @@ public class Result {
 
     private boolean checkValues(double x, double y, double r) {
         Double[] x_values = {-2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0};
-        Double[] r_values = {1.0,2.0,3.0,4.0,5.0};
-        return (y <= Y_MAX && y >= Y_MIN) && contain(x_values,x) && contain(r_values,r);
+        Double[] r_values = {1.0, 2.0, 3.0, 4.0, 5.0};
+        return (y <= Y_MAX && y >= Y_MIN) && contain(x_values, x) && contain(r_values, r);
     }
 
     private boolean contain(Double[] doubles, double value) {
         return Arrays.asList(doubles).contains(value);
     }
-
-
-
 
     @Override
     public String toString() {

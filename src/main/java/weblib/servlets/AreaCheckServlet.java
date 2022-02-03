@@ -1,7 +1,5 @@
 package weblib.servlets;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,19 +13,19 @@ public class AreaCheckServlet extends HttpServlet {
     List<Result> resList;
 
     @Override
-    public void init() throws ServletException {
+    public void init()  {
         resList = new ArrayList<>();
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long startTime = System.nanoTime();
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        long lstartTime = System.nanoTime();
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         String x = req.getParameter("x_value");
         String y = req.getParameter("y_value");
         String r = req.getParameter("radius");
-        String workTime = String.valueOf(System.nanoTime() - startTime);
+        String workTime = String.valueOf(System.nanoTime() - lstartTime);
         result = new Result(parseDouble(x), parseDouble(y), parseDouble(r), workTime);
         resList.add(result);
         getServletContext().setAttribute("result-row", resList.toString());
