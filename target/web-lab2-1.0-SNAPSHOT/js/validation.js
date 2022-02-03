@@ -15,23 +15,21 @@ $(document).ready(function () {
     let yField = document.getElementById("y_val");
 
     let value = $("#y_val").val().replace(',', '.');
-    let array = Array.prototype.slice.call(document.getElementsByName("r_value"));
 
-    function select(element) {
-        element.onclick = function () {
-            radius = $(this).val();
-        }
-    }
 
     function getRadius() {
-        array.forEach(select);
+        $('.set_r').on('click', function () {
+            radius = $(this).val();
+        })
+        console.log("r-value: " + radius);
     }
+
 
     function getX() {
         $('input[name="x_value"]').on('check', function () {
             x = $('input[name="x_value"]:checked').val();
-            console.log("x-value: " + x);
         })
+        console.log("x-value: " + x);
     }
 
     function validateX() {
@@ -104,7 +102,6 @@ $(document).ready(function () {
         if (x > canvas.width() || x < -canvas.width() || y > canvas.height() || y < -canvas.height()) {
             return;
         }
-        console.log("I start draw");
         Axes.setLineDash([2, 2]);
         Axes.beginPath();
         Axes.moveTo(x, 110);
@@ -147,31 +144,27 @@ $(document).ready(function () {
         }
 
         drawPoint(COEFF * nearestXValue / radius + AXIS, -(y / radius * COEFF - AXIS), color);
-        let ySelected = $('input[name="y_value"][value="' + y.trim() + '"]');
-        ySelected.trigger("click");
     }
 
     canvas.on('click', clickDraw);
 
 
-    validateY();
-    getRadius();
     getX();
     validateX();
+    validateY();
     $("#form").on("submit", function (event) {
         event.preventDefault();
         console.log("submitted");
-        console.log("serialized data: " + $(this).serialize());
+        console.log("serialized data: " + $(this).serialize() + "&radius=" + radius);
 
         if (!isValid) {
             return;
         }
 
-
         $.ajax({
             type: "POST",
-            url: "/weblib/servlets",
-            data: $(this).serialize() + "&timezone=" + new Date().getTimezoneOffset(),
+            url: "controller",
+            data: $(this).serialize() + "&radius=" + radius + "&timezone=" + new Date().getTimezoneOffset(),
             beforeSend: function () {
                 $(".send_form").attr("disabled", "disabled");
             },
@@ -196,9 +189,9 @@ $(document).ready(function () {
 
 
     $(".set_r").on("click", function () {
+        radius = $(this).val();
         let x = $('input[name="x_value"]:checked').val();
         let y = $('#y_val').val();
-        getRadius();
 
         let svgGraph = document.querySelector(".result-graph").getSVGDocument();
         svgGraph.querySelector('.coordinate-text_minus-Rx').textContent = (-radius).toString();
