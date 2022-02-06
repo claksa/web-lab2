@@ -7,7 +7,7 @@ $(document).ready(function () {
     const Y_MIN = -3;
     const Y_MAX = 3;
     const X_VALUES = ['-2', '-1.5', '-1', '-0.5', '0', '0.5', '1', '1.5', '2'];
-    const error = document.querySelector('#x_value+span.error');
+    const y_error = document.querySelector('#y_val+span.error');
 
     let x;
     let radius;
@@ -49,14 +49,15 @@ $(document).ready(function () {
             console.log("check y");
             if (isValidValue(yField)) {
                 isValid = true;
-                error.textContent = '';
-                error.className = 'error';
+                y_error.textContent = '';
+                y_error.className = 'error';
             } else {
                 showMessage();
                 event.preventDefault();
             }
         });
     }
+
 
     function checkFirstQuarter(x, y, r) {
         return x <= 0 && y >= 0 && x * x + y * y <= r / 2;
@@ -78,18 +79,18 @@ $(document).ready(function () {
 
     function showMessage() {
         if (yField.validity.valueMissing || !(value instanceof Number)) {
-            error.textContent = 'Пожалуйста, введите число! :(';
+            y_error.textContent = 'Пожалуйста, введите число! :(';
         } else if (!isNaN(parseFloat(value))) {
-            error.textContent = 'Вы ввели невалидное число!';
+            y_error.textContent = 'Вы ввели невалидное число!';
         }
 
         if (yField.validity.rangeOverflow) {
-            error.textContent = 'Максимальное значение y = 3!';
+            y_error.textContent = 'Максимальное значение y = 3!';
         }
         if (yField.validity.rangeUnderflow) {
-            error.textContent = "Минимальное значение у = -3!"
+            y_error.textContent = "Минимальное значение у = -3!"
         }
-        error.className = 'error active';
+        y_error.className = 'error active';
     }
 
     function clearCanvas() {
@@ -182,10 +183,6 @@ $(document).ready(function () {
         })
         return true;
     });
-
-    $('#form').on("reset", function (event) {
-        $('.set_y').removeClass('y_selected');
-    })
 
 
     $(".set_r").on("click", function () {

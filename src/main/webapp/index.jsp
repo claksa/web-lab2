@@ -36,6 +36,9 @@
             </th>
         </tr>
         <form action="controller" id="form" method="POST" novalidate>
+<%--            <tr>--%>
+<%--                <td id = "message" style="display:none"></td>--%>
+<%--            </tr>--%>
             <tr>
                 <td>X:</td>
                 <td class="coordinate">
@@ -63,7 +66,7 @@
                 <td>Y:</td>
                 <td class="y_coordinate">
                     <label for="y_val"></label>
-                    <input id="y_val" name="y_value" type="text" placeholder="-3..3" min="-3" max="3">
+                    <input id="y_val" name="y_value" type="number" step="1" placeholder="-3..3" min="-3" max="3">
                     <span class="error" aria-live="polite"></span>
                 </td>
             </tr>
@@ -88,10 +91,6 @@
                     <input type="submit" value="проверить" class="form_button" id="subbtn">
                     <br>
                     <button class="form_button" type="reset">сброс</button>
-                </td>
-            </tr>
-            <tr>
-                <td class="message">
                 </td>
             </tr>
         </form>

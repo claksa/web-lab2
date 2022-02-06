@@ -36,6 +36,9 @@
             </th>
         </tr>
         <form action="controller" id="form" method="POST" novalidate>
+<%--            <tr>--%>
+<%--                <td id = "message" style="display:none"></td>--%>
+<%--            </tr>--%>
             <tr>
                 <td>X:</td>
                 <td class="coordinate">
@@ -90,10 +93,6 @@
                     <button class="form_button" type="reset">сброс</button>
                 </td>
             </tr>
-            <tr>
-                <td class="message">
-                </td>
-            </tr>
         </form>
         </tbody>
     </table>
@@ -104,7 +103,7 @@
             <th>Y</th>
             <th>R</th>
             <th>Время</th>
-            <th>Время работы, мс</th>
+            <th>Время работы, нс</th>
             <th>Результат</th>
         </tr>
         </thead>
