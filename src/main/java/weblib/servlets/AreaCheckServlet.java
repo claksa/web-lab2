@@ -27,6 +27,10 @@ public class AreaCheckServlet extends HttpServlet {
         String r = req.getParameter("radius");
         String workTime = String.valueOf(System.nanoTime() - lstartTime);
         result = new Result(parseDouble(x), parseDouble(y), parseDouble(r), workTime);
+        if (!result.isCorrectData) {
+            resp.sendError(400);
+            return;
+        }
         resList.add(result);
         getServletContext().setAttribute("result-row", resList.toString());
         try (PrintWriter out = resp.getWriter()) {

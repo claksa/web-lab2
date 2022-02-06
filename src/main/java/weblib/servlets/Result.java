@@ -11,6 +11,7 @@ public class Result {
     double x;
     double y;
     double r;
+    boolean isCorrectData = false;
     String status;
     String currentTime;
     String workTime;
@@ -25,8 +26,9 @@ public class Result {
     }
 
     public String generateStatus(double x, double y, double r) {
-        String status = null;
+        String status = "некорректные данные"; //impossible
         if (checkValues(x, y, r)) {
+            isCorrectData = true;
             status = checkQuarters(x, y, r) ? "входит в ОДЗ" : "не входит в ОДЗ";
         }
         return status;
