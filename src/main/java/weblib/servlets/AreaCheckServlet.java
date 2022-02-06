@@ -32,9 +32,9 @@ public class AreaCheckServlet extends HttpServlet {
             return;
         }
         resList.add(result);
-        getServletContext().setAttribute("result-row", resList.toString());
+        getServletContext().setAttribute("result-row", resList);
         try (PrintWriter out = resp.getWriter()) {
-            for (Result res : resList) {
+            for (Result res : (List<Result>) getServletContext().getAttribute("result-row")) {
                 out.println(res);
             }
         }
