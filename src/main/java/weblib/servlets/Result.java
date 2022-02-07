@@ -25,7 +25,7 @@ public class Result {
         this.workTime = workTime;
     }
 
-    public String generateStatus(double x, double y, double r) {
+    private String generateStatus(double x, double y, double r) {
         String status = "некорректные данные"; //impossible
         if (checkValues(x, y, r)) {
             isCorrectData = true;
@@ -34,7 +34,7 @@ public class Result {
         return status;
     }
 
-    public String generateTime() {
+    private String generateTime() {
         String timePattern = "HH:mm:ss";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePattern);
         return LocalDateTime.now().format(formatter);

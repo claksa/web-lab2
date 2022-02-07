@@ -36,9 +36,6 @@
             </th>
         </tr>
         <form action="controller" id="form" method="POST" novalidate>
-<%--            <tr>--%>
-<%--                <td id = "message" style="display:none"></td>--%>
-<%--            </tr>--%>
             <tr>
                 <td>X:</td>
                 <td class="coordinate">
@@ -90,7 +87,7 @@
                 <td colspan="2">
                     <input type="submit" value="проверить" class="form_button" id="subbtn">
                     <br>
-                    <button class="form_button" type="reset">сброс</button>
+                    <input type="reset" value="сброс" class="form_button"  name="msg">
                 </td>
             </tr>
         </form>

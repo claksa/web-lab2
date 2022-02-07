@@ -185,6 +185,7 @@ $(document).ready(function () {
     });
 
 
+
     $(".set_r").on("click", function () {
         radius = $(this).val();
         let x = $('input[name="x_value"]:checked').val();
