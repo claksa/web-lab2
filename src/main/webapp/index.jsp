@@ -87,7 +87,7 @@
                 <td colspan="2">
                     <input type="submit" value="проверить" class="form_button" id="subbtn">
                     <br>
-                    <input type="reset" value="сброс" class="form_button"  name="msg">
+                    <input type="reset" value="сброс" class="form_button" name="msg">
                 </td>
             </tr>
         </form>

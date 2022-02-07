@@ -16,6 +16,14 @@ public class ControllerServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
+        System.out.println("message: " + request.getParameter("msg"));
+        List<Result> results = (List<Result>) getServletContext().getAttribute("result-row");
+        if (results != null && request.getParameter("msg") != null) {
+            results.clear();
+            getServletContext().setAttribute("result-row", results);
+            return;
+        }
         if (request.getParameter("x_value") != null && request.getParameter("y_value") != null && request.getParameter("radius") != null) {
             request.getServletContext().getRequestDispatcher("/areaCheck").forward(request, response);
         } else {

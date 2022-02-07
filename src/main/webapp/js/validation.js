@@ -11,17 +11,18 @@ $(document).ready(function () {
 
     let x;
     let radius;
+    let message;
     let isValid = false;
     let yField = document.getElementById("y_val");
 
     let value = $("#y_val").val().replace(',', '.');
+    let result_style = document.getElementById('row').style;
 
 
     function getRadius() {
         $('.set_r').on('click', function () {
             radius = $(this).val();
         })
-        console.log("r-value: " + radius);
     }
 
 
@@ -29,7 +30,6 @@ $(document).ready(function () {
         $('input[name="x_value"]').on('check', function () {
             x = $('input[name="x_value"]:checked').val();
         })
-        console.log("x-value: " + x);
     }
 
     function validateX() {
@@ -46,7 +46,6 @@ $(document).ready(function () {
 
     function validateY() {
         yField.addEventListener("input", function (event) {
-            console.log("check y");
             if (isValidValue(yField)) {
                 isValid = true;
                 y_error.textContent = '';
@@ -119,7 +118,6 @@ $(document).ready(function () {
         let color = 'red';
         if (checkCoordinates(x, y, radius)) {
             color = 'green';
-            console.log('checked');
         }
         drawPoint(x * COEFF / radius + AXIS, -(y / radius * COEFF - AXIS), color);
     }
@@ -150,13 +148,12 @@ $(document).ready(function () {
     canvas.on('click', clickDraw);
 
 
+
     getX();
     validateX();
     validateY();
     $("#form").on("submit", function (event) {
         event.preventDefault();
-        console.log("submitted");
-        console.log("serialized data: " + $(this).serialize() + "&radius=" + radius);
 
         if (!isValid) {
             return;
@@ -172,7 +169,6 @@ $(document).ready(function () {
             success: function (data) {
                 console.log("ajax_success: " + data);
                 $(".send_form").attr("disabled", false);
-                let result_style = document.getElementById('row').style;
                 result_style.display = 'table-row';
                 document.getElementById('receiver').innerHTML = data;
             },
@@ -203,6 +199,19 @@ $(document).ready(function () {
 
         redrawFromInput(x, y, radius);
     });
+
+    $('#form').on("reset", function (event) {
+        $.ajax({
+            type: 'POST',
+            url: 'controller',
+            data: 'msg=' + encodeURI(message),
+            success: function () {
+                result_style.display = 'none';
+                clearCanvas();
+            }
+        })
+    })
+
 
     $('#y_val').on('change', function () {
         let y = $('#y_val').val();

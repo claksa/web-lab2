@@ -11,10 +11,12 @@ $(document).ready(function () {
 
     let x;
     let radius;
+    let message;
     let isValid = false;
     let yField = document.getElementById("y_val");
 
     let value = $("#y_val").val().replace(',', '.');
+    let result_style = document.getElementById('row').style;
 
 
     function getRadius() {
@@ -150,6 +152,7 @@ $(document).ready(function () {
     canvas.on('click', clickDraw);
 
 
+
     getX();
     validateX();
     validateY();
@@ -172,7 +175,6 @@ $(document).ready(function () {
             success: function (data) {
                 console.log("ajax_success: " + data);
                 $(".send_form").attr("disabled", false);
-                let result_style = document.getElementById('row').style;
                 result_style.display = 'table-row';
                 document.getElementById('receiver').innerHTML = data;
             },
@@ -203,6 +205,20 @@ $(document).ready(function () {
 
         redrawFromInput(x, y, radius);
     });
+
+    $('#form').on("reset", function (event) {
+        console.log("brrrrr");
+        $.ajax({
+            type: 'POST',
+            url: 'controller',
+            data: 'msg=' + encodeURI(message),
+            success: function () {
+                result_style.display = 'none';
+                clearCanvas();
+            }
+        })
+    })
+
 
     $('#y_val').on('change', function () {
         let y = $('#y_val').val();
