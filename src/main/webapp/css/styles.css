@@ -9,6 +9,7 @@ body {
 
 .container {
     display: flex;
+    width: 100%;
 
     flex-direction: column;
     align-items: stretch;
@@ -88,6 +89,7 @@ header h5, h4 {
 
 #row {
     margin: auto;
+    display: none;
     width: 60%;
     padding-top: 2%;
     padding-left: 11%;
@@ -98,9 +100,6 @@ header h5, h4 {
     border-spacing: 10px;
 }
 
-.result-table {
-    position: relative;
-}
 .result-table tbody td  {
     text-align: left;
     border: 1px solid #333333;
