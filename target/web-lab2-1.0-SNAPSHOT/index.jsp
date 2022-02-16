@@ -25,7 +25,7 @@
                         data="${pageContext.request.contextPath}/img/mygraph.svg">
                     <img src="${pageContext.request.contextPath}/img/graph.png" width="220" height="220" alt="graph"/>
                 </object>
-                <canvas id="canvas" width="220" height="220">График</canvas>
+                <canvas id="canvas">Ваш браузер не поддерживает канву</canvas>
             </td>
         </tr>
         </thead>
@@ -64,6 +64,7 @@
                 <td class="y_coordinate">
                     <label for="y_val"></label>
                     <input id="y_val" name="y_value" type="number" step="1" placeholder="-3..3" min="-3" max="3">
+                    <span class="error" aria-live="polite"></span>
                 </td>
             </tr>
             <tr>
@@ -80,11 +81,7 @@
                     <label class="r_container" for="R5"></label>
                     <input class="set_r" type="button" id="R5" name="r_value" value="5">
                 </td>
-            </tr>
-            <tr>
-                <td id="message" colspan="2">
-                    <span class="error" aria-live="polite"><!--error msg--></span>
-                </td>
+                <td><span id="radio-error"></span></td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -96,19 +93,19 @@
         </form>
         </tbody>
     </table>
-        <table id="row" class="result-table">
-            <thead>
-            <tr>
-                <th>X</th>
-                <th>Y</th>
-                <th>R</th>
-                <th>Время</th>
-                <th>Время работы, нс</th>
-                <th>Результат</th>
-            </tr>
-            </thead>
-            <tbody id="receiver"></tbody>
-        </table>
+    <table id="row" class="result-table" style="display:none;">
+        <thead>
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>R</th>
+            <th>Время</th>
+            <th>Время работы, нс</th>
+            <th>Результат</th>
+        </tr>
+        </thead>
+        <tbody id="receiver"></tbody>
+    </table>
 </div>
 </body>
 </html>
